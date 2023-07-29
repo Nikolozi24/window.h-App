@@ -28,19 +28,6 @@ HWND apptool::Button::getButtonWindow()
 void apptool::Window::initWindow()
 {
   
-    mainWindow = CreateWindowEx(
-        0,                      // no extended styles           
-        L"MainWClass",           // class name                   
-        L"APP",          // window name                  
-        WS_OVERLAPPEDWINDOW,           
-        CW_USEDEFAULT,          // default horizontal position  
-        CW_USEDEFAULT,          // default vertical position    
-        CW_USEDEFAULT,          // default width                
-        CW_USEDEFAULT,          // default height               
-        (HWND)NULL,            // no parent or owner window    
-        (HMENU)NULL,           // class menu used              
-          NULL,                  // instance handle              
-        NULL);
 }
 
 HWND apptool::Window::getWindow()
