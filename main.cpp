@@ -121,7 +121,7 @@ void ChildLogin(HWND  hwnd) {
 	// Username Input TextBox
 	//
 	HWND inputUsername = CreateWindow( // let's create window for show our text which  will be child window for main window
-		L"EDIT", // Text must not be changed
+		L"EDIT", // Text must  be changed
 		L"", ///  any Text for display
 		WS_VISIBLE | WS_CHILD | WS_BORDER,  // We give our text filed to be visable , to be  child window  , and have border  
 		150, 30, // pos(x,y) // positions
