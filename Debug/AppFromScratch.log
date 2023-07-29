@@ -1,2 +1,7 @@
-﻿  main.cpp
+﻿  Button.cpp
+  Input.cpp
+  Label.cpp
+  Mwindow.cpp
+  main.cpp
+  Generating Code...
   AppFromScratch.vcxproj -> C:\Users\PC\source\repos\AppFromScratch\Debug\AppFromScratch.exe
