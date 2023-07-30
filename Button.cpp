@@ -2,7 +2,7 @@
 
 apptool::Button::Button() {}
 
-void apptool::Button::createButton(_In_ int x, _In_ int y, _In_ int  width, _In_ int height, _In_opt_ LPCWSTR lpWindowName, HWND m_hwnd , DWORD style = (WS_VISIBLE | WS_CHILD | WS_BORDER) , HMENU menu)
+void apptool::Button::createButton(_In_ int x, _In_ int y, _In_ int  width, _In_ int height, _In_opt_ LPCWSTR lpWindowName, HWND m_hwnd , DWORD style = (WS_VISIBLE | WS_CHILD | WS_BORDER) , int menu)
 {
     // Create Button  
     hwndBuuton = CreateWindow(
@@ -14,7 +14,7 @@ void apptool::Button::createButton(_In_ int x, _In_ int y, _In_ int  width, _In_
         width,        // Button width
         height,        // Button height
         m_hwnd,     // Parent window
-        menu,       // No menu.
+        (HMENU)menu,       // No menu.
         NULL,
         NULL
     );      // Pointer not needed.

@@ -1,5 +1,5 @@
 #include "Mwindow.h"
-apptool::label::label(int x, int y, int width, int height, LPCWSTR lpWindowName, HWND m_hwnd, DWORD style)
+apptool::label::label(int x, int y, int width, int height, LPCWSTR lpWindowName, HWND m_hwnd, DWORD style, int menu)
 {
     m_label = CreateWindow(
         L"STATIC",  // Predefined class; Unicode assumed 
@@ -10,10 +10,11 @@ apptool::label::label(int x, int y, int width, int height, LPCWSTR lpWindowName,
         width,        // label width
         height,        // labelheight
         m_hwnd,     // Parent window
-        NULL,       // No menu.
+        (HMENU)menu,       // No menu.
         NULL,
         NULL
     );
 }
+apptool::label::label() {}
 
 apptool::label::~label(){}

@@ -1,5 +1,5 @@
 #include "Mwindow.h"
-apptool::input::input(_In_ int x, _In_ int y, _In_ int width, _In_ int height, HWND m_hwnd, DWORD style) {
+apptool::input::input(_In_ int x, _In_ int y, _In_ int width, _In_ int height, HWND m_hwnd, DWORD style , int main) {
 	m_input = CreateWindow(
 		L"EDIT", // Text must be changed
 		L"", ///  any Text for display
@@ -8,8 +8,13 @@ apptool::input::input(_In_ int x, _In_ int y, _In_ int width, _In_ int height, H
 		width,
 		height, // (width , height)
 		m_hwnd, // parent window
-		NULL,// do not have Menu
+		(HMENU) main,// do not have Menu
 		NULL,// don't have Histance
 		NULL// Do not have prameters
 	);
 }
+HWND apptool::input::getInputWindow()
+{
+	return m_input;
+}
+apptool::input::input() {}

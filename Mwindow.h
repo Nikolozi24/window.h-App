@@ -9,7 +9,7 @@ namespace apptool
 	class Button {
 	public:
 		Button();
-		void createButton(_In_ int x, _In_ int y , _In_ int width , _In_ int height, _In_opt_ LPCWSTR lpWindowName, HWND m_hwnd , DWORD style , HMENU menu = NULL);
+		void createButton(_In_ int x, _In_ int y , _In_ int width , _In_ int height, _In_opt_ LPCWSTR lpWindowName, HWND m_hwnd , DWORD style , int menu =0);
 		HWND getButtonWindow();//it's return button handler
 	private:
 		HWND hwndBuuton;
@@ -33,7 +33,8 @@ namespace apptool
 	/// 
 	class label {
 	public:
-		label(_In_ int x, _In_ int y, _In_ int width, _In_ int height, _In_opt_ LPCWSTR lpWindowName, HWND m_hwnd, DWORD style);
+		label(_In_ int x, _In_ int y, _In_ int width, _In_ int height, _In_opt_ LPCWSTR lpWindowName, HWND m_hwnd, DWORD style , int menu=0);
+		label();
 		~label();
 
 	private:
@@ -44,9 +45,10 @@ namespace apptool
 	///
 	class input {
 	public:
+		input();
 
-		input(_In_ int x, _In_ int y, _In_ int width, _In_ int height,HWND m_hwnd, DWORD style);
-			
+		input(_In_ int x, _In_ int y, _In_ int width, _In_ int height,HWND m_hwnd, DWORD style , int menu = 0);
+		HWND getInputWindow();
 	private:
 		HWND m_input;
 	};

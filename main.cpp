@@ -6,18 +6,38 @@
 //																						
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////		 
 #include<iostream>
+#include<atlstr.h>
 #include<windows.h>
+#include<string>
+#include<fstream>
+
 #include "Mwindow.h"
 
-
-// Declare Windows Procedure
+// const  defines
+#define IDC_LOGIN_BUTTON (100)
+#define IDC_USER_INPUT (200)
+#define IDC_PASS_INPUT (300)
+#define IDC_USER_LABEL (400)
+#define IDC_PASS_LABEL (500)
+ // Declare Windows Procedure
  LRESULT CALLBACK WindowProcedure(HWND, UINT, WPARAM, LPARAM );
- void Login(HWND hwnd);
-
+ std::ofstream ofs("data.txt");
 // Make A Class Name Into a Global  variable
 LPCWSTR szClassName = L"MyGuiApp";
+	//
+							//  Login Ccomponents
+	//
+std::string user_name, pass_word; 
 
-											/// main function
+apptool::label username,password;
+//inputs
+apptool::input Username,Password;
+//button
+// 
+apptool::Button loginButton;
+	//
+								// end of login components
+									/// main function
 int WINAPI WinMain(HINSTANCE hThisInstance, HINSTANCE hPrevInstance, LPSTR lpszArgument, int nCmdShow)	{	
 	/// Create main Window
 	apptool::Window  window;
@@ -45,13 +65,48 @@ LRESULT CALLBACK WindowProcedure(HWND hwnd, UINT message, WPARAM wParam, LPARAM 
 	//
 	switch (message)
 	{
+	
 	case WM_CREATE:   // this is message when our main window will Create;//let's show our text in that window
-		Login(hwnd);
+		username = apptool::label(20, 30, 90, 20, L"username: ", hwnd, (WS_VISIBLE | WS_CHILD) ,IDC_USER_LABEL);
+		password = apptool::label (20, 60, 90, 20, L"Password: ", hwnd, (WS_VISIBLE | WS_CHILD) , IDC_PASS_LABEL);
+		
+		Username = apptool::input(150, 30, 130, 20, hwnd, WS_VISIBLE | WS_CHILD | WS_BORDER , IDC_USER_INPUT);
+		Password = apptool::input(150, 60, 130, 20, hwnd, WS_VISIBLE | WS_CHILD | WS_BORDER , IDC_PASS_INPUT);
+		
+		loginButton.createButton(150, 90, 130, 30, L"Log in", hwnd, (WS_VISIBLE | WS_CHILD | WS_BORDER), IDC_LOGIN_BUTTON);
 		break;
 	case WM_COMMAND:
+		switch (LOWORD(wParam))
+		{
+		case IDC_USER_LABEL:
+			//::MessageBox(hwnd, L"user LAbel", L" user LABEL" , MB_YESNO);
+			break;
+		case IDC_PASS_LABEL:	
+		//	::MessageBox(hwnd, L"pass LAbel", L" pass LABEL" , MB_OK);
+			break;
+		case IDC_USER_INPUT:
+			//::MessageBox(hwnd, L"user Input", L" user input", MB_YESNO);
+			break;
+		case IDC_PASS_INPUT:
+			//::MessageBox(hwnd, L"pass input", L" pass input", MB_OK);
+			break;
+		case IDC_LOGIN_BUTTON:
+			 LPWSTR user =NULL, pass = NULL;
+			 GetWindowText(Username.getInputWindow(), user, 20);
+			 GetWindowText(Password.getInputWindow(), pass, 20);
+			char* user_name = CW2A(user);
+			char* pass_word = CW2A(pass);
+			std::string newUse, newPass;
+		
+			ofs << user_name;
+			ofs << pass_word;
+			
+			::MessageBox(hwnd, L"Button ", L"BUTTON", MB_OK);
+			break;
+		}
 
 	case WM_DESTROY:
-		PostQuitMessage(0);
+		//	PostQuitMessage(0);
 		break;
 	default:
 		return DefWindowProc(hwnd, message, wParam, lParam);
@@ -60,14 +115,4 @@ LRESULT CALLBACK WindowProcedure(HWND hwnd, UINT message, WPARAM wParam, LPARAM 
 
 	return 0;
 
-}
-void Login(HWND  hwnd) {
-		//	 labels
-	apptool::label username(20, 30, 90 , 20, L"username: ", hwnd, (WS_VISIBLE | WS_CHILD)) ,
-				   password(20, 60,90, 20,L"Password: ",hwnd,(WS_VISIBLE | WS_CHILD));
-		//inputs
-	apptool::input Username(150, 30,130, 20,hwnd,WS_VISIBLE | WS_CHILD | WS_BORDER) ,
-			Password(150 , 60 , 130 , 20 , hwnd, WS_VISIBLE | WS_CHILD | WS_BORDER);
-	apptool::Button loginButton;// button
-	loginButton.createButton(150, 90, 130, 30, L"Log in", hwnd , (WS_VISIBLE | WS_CHILD | WS_BORDER) , (HMENU)1 );
 }
